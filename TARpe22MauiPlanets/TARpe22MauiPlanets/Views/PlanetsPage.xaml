@@ -5,16 +5,18 @@
              xmlns:models="clr-namespace:TARpe22MauiPlanets.Models"
              Title="Solar Planets">
 
-    <Grid>
-        
-        <!--Menu-->
+    <Grid
+        IgnoreSafeArea="{OnPlatform Android=False, iOS=True}">
+
+        <!-- Menu Grid -->
         <Grid
-            x:Name="MenuContainer">
+            x:Name="MenuContainer"
+            IgnoreSafeArea="{OnPlatform Android=False, iOS=True}">
 
             <Grid.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="#666" Offset="0.0" />
-                    <GradientStop Color="#000" Offset="1.0" />
+                    <GradientStop Color="#666666" Offset="0.0" />
+                    <GradientStop Color="#000000" Offset="1.0"/>
                 </LinearGradientBrush>
             </Grid.Background>
 
@@ -27,43 +29,71 @@
                 HorizontalOptions="End"
                 Spacing="20">
 
-                <Label
+                <Label                
                     Text="MENU"
                     Style="{StaticResource PageHeaderStyle}"
+                    HorizontalOptions="End"/>
+
+                <Label                
+                    Text="Option 1 (with icon)"
+                    Style="{StaticResource PageHeaderSubtitleStyle}"
+                    HorizontalOptions="End" />
+
+                <Label                
+                    Text="Option 2 (with icon)"
+                    Style="{StaticResource PageHeaderSubtitleStyle}"
+                    HorizontalOptions="End" />
+
+                <Label                
+                    Text="Option 3 (with icon)"
+                    Style="{StaticResource PageHeaderSubtitleStyle}"
+                    HorizontalOptions="End" />
+
+                <Label                
+                    Text="Option 4 (with icon)"
+                    Style="{StaticResource PageHeaderSubtitleStyle}"
+                    HorizontalOptions="End" />
+
+                <Label                
+                    Text="Option 5 (with icon)"
+                    Style="{StaticResource PageHeaderSubtitleStyle}"
+                    HorizontalOptions="End" />
+
+                <Label                
+                    Text="Option 6 (with icon)"
+                    Style="{StaticResource PageHeaderSubtitleStyle}"
                     HorizontalOptions="End" />
 
             </VerticalStackLayout>
-
         </Grid>
-        
-        <!--Main Content-->
 
+        <!-- Main Content -->
         <Grid
             x:Name="MainContentGrid"
             Padding="24,52,24,0"
+            IgnoreSafeArea="{OnPlatform Android=False, iOS=True}"
             BackgroundColor="{StaticResource PageBackgroundColor}"
-            ColumnDefinitions="*, Auto"
-            RowDefinitions="Auto, *">
-            
-            <!--Header text-->
+            ColumnDefinitions="*,Auto"
+            RowDefinitions="Auto,*">
+
+            <!-- Header Text -->
             <VerticalStackLayout
                 Spacing="4"
                 Grid.Row="0"
                 Grid.Column="0"
                 VerticalOptions="Center">
 
-                <Label 
+                <Label
                     Style="{StaticResource PageHeaderStyle}"
                     Text="Let's Explore"/>
 
-                <Label 
+                <Label
                     Style="{StaticResource PageHeaderSubtitleStyle}"
-                    Text="The solar system"/>
+                    Text="The milky way galaxy"/>
 
             </VerticalStackLayout>
-            
-            <!--Api picture-->
 
+            <!-- Profile Pic -->
             <Border
                 WidthRequest="56"
                 HeightRequest="56"
@@ -73,33 +103,32 @@
                 StrokeThickness="6"
                 Grid.Row="0"
                 Grid.Column="1">
-                
+
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="28" />
+                    <RoundRectangle CornerRadius="28"/>
                 </Border.StrokeShape>
 
                 <Border.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ApiPic_Clicked" />
+                    <TapGestureRecognizer Tapped="ProfilePic_Clicked" />
                 </Border.GestureRecognizers>
 
-                <Image 
+                <Image
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
                     WidthRequest="50"
                     HeightRequest="50"
                     Source="apipic.png">
-
                     <Image.Clip>
-                        <EllipseGeometry 
+                        <EllipseGeometry
                             Center="25,25"
                             RadiusX="25"
-                            RadiusY="25" />
+                            RadiusY="25"/>
                     </Image.Clip>
                 </Image>
-            </Border>
-            
-            <!--Main content scroll-->
 
+            </Border>
+
+            <!-- Main Content ScrollView -->
             <ScrollView
                 Grid.Row="1"
                 Grid.Column="0"
@@ -110,48 +139,59 @@
 
                 <VerticalStackLayout
                     Spacing="12">
-                    
-                    <!--Search Box-->
+
+                    <!-- Search Box -->
                     <Border
                         Padding="12,4"
-                        BackgroundColor="#33CCCC"
+                        BackgroundColor="#33CCCCCC"
                         Stroke="{StaticResource BorderColor}"
                         HorizontalOptions="Fill"
                         Margin="0,0,24,0"
                         HeightRequest="48">
                         <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="6" />
+                            <RoundRectangle CornerRadius="6"/>
                         </Border.StrokeShape>
 
-                        <Grid HorizontalOptions="Fill"
-                              VerticalOptions="Center"
-                              ColumnDefinitions="Auto,*"
-                              ColumnSpacing="16">
+                        <Grid
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Center"
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="16">
 
-                            <Image 
+                            <Image
                                 WidthRequest="18"
                                 HeightRequest="18"
                                 Source="imgsearch.png"
                                 Grid.Column="0"
                                 VerticalOptions="Center" />
 
-                            <Label 
-                                Text="Search your favorite planet"
+                            <Label
+                                Text="Search for your favorite planet"
                                 Grid.Column="1"
                                 VerticalOptions="Center"
                                 VerticalTextAlignment="Center"
-                                TextColor="Black"
                                 Style="{StaticResource MenuLabelStyle}" />
 
                         </Grid>
+
                     </Border>
 
+                    <!--<SearchBar
+                        ios:SearchBar.SearchBarStyle="Minimal"
+                        Placeholder="Search for your favorite planet"
+                        FontFamily="MediumFont"
+                        HorizontalOptions="Fill"
+                        Margin="0,0,24,0"
+                        FontSize="14"
+                        PlaceholderColor="#AAAAAA" />-->
+
+                    <!-- Most Popular Section -->
                     <Label
                         Style="{StaticResource PageSubHeaderStyle}"
                         Margin="0,12,0,0">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="Most popular..."/>
+                                <Span Text="Most Popular   " />
                                 <Span Text="→" FontSize="20" />
                             </FormattedString>
                         </Label.FormattedText>
@@ -184,39 +224,44 @@
                                     </Border.StrokeShape>
 
                                     <Grid
-                                        RowDefinitions="*, Auto, Auto"
+                                        RowDefinitions="*,Auto,Auto"
                                         RowSpacing="4">
 
-                                        <Image 
+                                        <Image
                                             Grid.Row="0"
                                             Source="{Binding HeroImage}"
                                             Rotation="-30"
                                             Aspect="AspectFit"
                                             VerticalOptions="Fill"
-                                            HorizontalOptions="Fill" />
+                                            HorizontalOptions="Fill"/>
 
-                                        <Label 
+                                        <Label
                                             Grid.Row="1"
                                             Style="{StaticResource FeaturedPlanetHeaderStyle}"
                                             Text="{Binding Name}"
                                             Margin="0,8,0,0"/>
 
-                                        <Label 
+                                        <Label
                                             Grid.Row="2"
                                             Style="{StaticResource FeaturedPlanetHeaderSubtitleStyle}"
-                                            Text="{Binding Subtitle}"/>
+                                            Text="{Binding Subtitle}" />
+
                                     </Grid>
+
                                 </Border>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
+
                     </CollectionView>
 
+
+                    <!-- More Section -->
                     <Label
-                        Style="{StaticResource PageHeaderStyle}"
+                        Style="{StaticResource PageSubHeaderStyle}"
                         Margin="0,12,0,0">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="You may also like..."/>
+                                <Span Text="You may also like   "  />
                                 <Span Text="→" FontSize="20" />
                             </FormattedString>
                         </Label.FormattedText>
@@ -229,7 +274,7 @@
                         SelectionChanged="Planets_SelectionChanged">
 
                         <CollectionView.ItemsLayout>
-                            <LinearItemsLayout 
+                            <LinearItemsLayout
                                 Orientation="Horizontal"
                                 ItemSpacing="16" />
                         </CollectionView.ItemsLayout>
@@ -245,37 +290,40 @@
                                     Padding="16">
 
                                     <Border.StrokeShape>
-                                        <RoundRectangle CornerRadius="16" />
+                                        <RoundRectangle CornerRadius="16"/>
                                     </Border.StrokeShape>
 
                                     <Grid
-                                        RowDefinitions="*, Auto, Auto"
+                                        RowDefinitions="*,Auto,Auto"
                                         RowSpacing="4">
 
-                                        <Image 
+                                        <Image
                                             Grid.Row="0"
                                             Source="{Binding HeroImage}"
                                             Rotation="-30"
-                                            Aspect="AspectFit"
+                                            Aspect="AspectFit"                                        
                                             VerticalOptions="Fill"
                                             HorizontalOptions="Fill"/>
+
                                         <Label
                                             Grid.Row="1"
                                             Style="{StaticResource AllPlanetHeaderStyle}"
                                             Text="{Binding Name}"
                                             Margin="0,4,0,0"/>
+
                                     </Grid>
-                                    
+
                                 </Border>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
-                        
+
                     </CollectionView>
-                    
+
                 </VerticalStackLayout>
-                
+
             </ScrollView>
 
+            <!-- Bottom Tab Bar -->
             <Border
                 Padding="16,0"
                 BackgroundColor="#393965"
@@ -288,62 +336,64 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2">
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="45" />
+                    <RoundRectangle CornerRadius="45"/>
                 </Border.StrokeShape>
 
                 <Grid
                     HorizontalOptions="Fill"
                     VerticalOptions="Center"
-                    RowDefinitions="Auto, Auto"
+                    RowDefinitions="Auto,Auto"
                     ColumnDefinitions="*,*,*"
                     RowSpacing="6">
 
-                    <Image 
+                    <Image
                         WidthRequest="30"
                         HeightRequest="30"
                         Source="imgexplore.png"
                         Grid.Row="0"
                         Grid.Column="0"
                         HorizontalOptions="Center" />
-                    <Label 
+                    <Label
                         Text="Explore"
                         Grid.Row="1"
                         Grid.Column="0"
                         HorizontalOptions="Center"
-                        Style="{StaticResource MenuLabelStyle}"/>
-                    <Image 
+                        Style="{StaticResource MenuLabelStyle}" />
+
+                    <Image
                         WidthRequest="30"
                         HeightRequest="30"
                         Source="imgfavorite.png"
                         Grid.Row="0"
                         Grid.Column="1"
                         HorizontalOptions="Center" />
-                    <Label 
+                    <Label
                         Text="Favorite"
                         Grid.Row="1"
                         Grid.Column="1"
                         HorizontalOptions="Center"
-                        Style="{StaticResource MenuLabelStyle}"/>
-                    <Image 
+                        Style="{StaticResource MenuLabelStyle}" />
+
+                    <Image
                         WidthRequest="30"
                         HeightRequest="30"
                         Source="imgprofile.png"
                         Grid.Row="0"
                         Grid.Column="2"
                         HorizontalOptions="Center" />
-                    <Label 
-                        Text="Explore"
+                    <Label
+                        Text="Profile"
                         Grid.Row="1"
                         Grid.Column="2"
                         HorizontalOptions="Center"
-                        Style="{StaticResource MenuLabelStyle}"/>
+                        Style="{StaticResource MenuLabelStyle}" />
 
                 </Grid>
-                
+
             </Border>
-            
+
         </Grid>
-        
+
     </Grid>
     
 </ContentPage>
